@@ -1,0 +1,33 @@
+dsl_graph:loop_execution("quant-ph.gml", 0.05, 8, 1, execution_idrouille_quant.txt,1,2).
+dsl_graph:loop_execution(karate.gml, 0.05, 8, 1, execution_idchire.txt, 16,2),
+dsl_graph:loop_execution(karate.gml, 0.05, 8, 0, execution_idchire.txt, 1,2).
+
+
+taskset -c 0,4,8,12,16,20,24,28,1,5,9,13 ../../1_erlang/otp-numa-maint/bin/erl
+dsl_graph:loop_execution(karate.gml, 0.05, 8, 1, execution_idrouille.txt,1,2).
+dsl_graph:loop_execution(karate.gml, 0.05, 8, 0, execution_idrouille.txt,1,2).
+
+taskset -c 0,4,8,12,16,20,24,28,1,5,9,13,17,21,25 python katz_score.py karate.csv 0.05 8 15 1
+taskset -c 0,4,8,12,16,20,24,28,1,5,9,13,17,21,25 python katz_score.py karate.csv 0.05 8 15 1
+
+
+
+
+
+
+
+
+dsl_graph:loop_execution(karate.gml, 0.05, 8, 0, test_idrouille.txt, 1,0,2),
+dsl_graph:loop_execution(karate.gml, 0.05, 7, 1, test_idrouille.txt, 8,1,2),
+
+dsl_graph:loop_execution(dolphins.gml, 0.05, 7, 1, test_idchire.txt, 8,1,2),
+dsl_graph:loop_execution(dolphins.gml, 0.05, 7, 0, test_idchire.txt, 1,0,2),
+dsl_graph:loop_execution(dolphins.gml, 0.05, 6, 1, test_idchire.txt, 8,1,2),
+dsl_graph:loop_execution(dolphins.gml, 0.05, 6, 0, test_idchire.txt, 1,0,2).
+
+dsl_graph:loop_execution(dolphins.gml, 0.05, 7, 1, test_idrouille.txt, 8,1,2),
+dsl_graph:loop_execution(dolphins.gml, 0.05, 7, 0, test_idrouille.txt, 1,0,2),
+dsl_graph:loop_execution(dolphins.gml, 0.05, 6, 1, test_idrouille.txt, 8,1,2),
+dsl_graph:loop_execution(dolphins.gml, 0.05, 6, 0, test_idrouille.txt, 1,0,2),
+
+
